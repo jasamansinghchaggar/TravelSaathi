@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+
+{% block title %}
+  Report Road Condition - TravelSaathi
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Report Road Condition</h3>
+          </div>
+          <div class="card-body">
+            <p class="lead mb-4">Help other travelers by reporting road conditions, hazards, or construction zones you encounter during your journey.</p>
+
+            <form method="post">
+              {% csrf_token %}
+
+              <div class="mb-3">
+                <label for="id_location_type" class="form-label">Location Type</label>
+                {{ form.location_type|addclass:'form-select' }}
+              </div>
+
+              <div id="coordinates-fields" style="display:none;">
+                <div class="mb-3">
+                  <label for="id_latitude" class="form-label">Latitude</label>
+                  {{ form.latitude|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                  <label for="id_longitude" class="form-label">Longitude</label>
+                  {{ form.longitude|addclass:'form-control' }}
+                </div>
+              </div>
+
+              <div id="url-field" style="display:none;">
+                <div class="mb-3">
+                  <label for="id_location_url" class="form-label">Location URL</label>
+                  {{ form.location_url|addclass:'form-control' }}
+                </div>
+              </div>
+
+              <div id="manual-fields" style="display:none;">
+                <div class="mb-3">
+                  <label for="id_street" class="form-label">Street</label>
+                  {{ form.street|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                  <label for="id_city" class="form-label">City</label>
+                  {{ form.city|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                  <label for="id_state" class="form-label">State</label>
+                  {{ form.state|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                  <label for="id_country" class="form-label">Country</label>
+                  {{ form.country|addclass:'form-control' }}
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="id_condition" class="form-label">Road Condition</label>
+                {{ form.condition|addclass:'form-select' }}
+              </div>
+
+              <div class="mb-3">
+                <label for="id_description" class="form-label">Description</label>
+                {{ form.description|addclass:'form-control' }}
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-body text-center">
+            <h5 class="card-title">Thank You for Contributing</h5>
+            <p class="card-text">Your reports help keep other travelers safe and informed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function toggleLocationFields() {
+    var type = document.getElementById('id_location_type').value;
+    document.getElementById('coordinates-fields').style.display = (type === 'coordinates') ? '' : 'none';
+    document.getElementById('url-field').style.display = (type === 'url') ? '' : 'none';
+    document.getElementById('manual-fields').style.display = (type === 'manual') ? '' : 'none';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var typeField = document.getElementById('id_location_type');
+    if (typeField) {
+      typeField.addEventListener('change', toggleLocationFields);
+      toggleLocationFields();
+    }
+  });
+</script>
+{% endblock %}

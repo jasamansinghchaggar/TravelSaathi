@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}TravelSaathi - Your Smart Travel Companion{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4">Welcome to TravelSaathi</h1>
+        <p class="lead">Your smart travel companion for safer and smarter journeys</p>
+        <div class="mt-4">
+            <a href="{% url 'services' %}" class="btn btn-primary btn-lg me-2">Our Services</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg">Learn More</a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container">
+    <div class="text-center mb-5">
+        <h2>How TravelSaathi Makes Your Journey Better</h2>
+        <p class="text-muted">Smart features designed for modern travelers</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Drowsiness Detection</h3>
+                <p>Our AI-powered system monitors your eyes to detect signs of drowsiness and alerts you to prevent accidents.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Mechanic Bot</h3>
+                <p>Get immediate assistance for vehicle breakdowns with our AI mechanic assistant.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Smart Navigation</h3>
+                <p>Navigate through the safest and most efficient routes with our smart GPS system.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Travel Planner</h3>
+                <p>Plan your trips efficiently with personalized recommendations from our AI travel assistant.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safe Spot Finder</h3>
+                <p>Discover safe places to rest, eat, or stay during your journey with our safety-first recommendations.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box text-center">
+                <div class="feature-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>SOS System</h3>
+                <p>One-tap emergency assistance that notifies your emergency contacts with your location.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+{% if not user.is_authenticated %}
+<div class="container mt-5 text-center">
+    <div class="p-5 bg-light rounded">
+        <h2>Ready for a Safer Journey?</h2>
+        <p class="lead">Join TravelSaathi today and experience the future of travel safety.</p>
+        <a href="{% url 'register' %}" class="btn btn-primary btn-lg mt-3">Sign Up Now</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}
