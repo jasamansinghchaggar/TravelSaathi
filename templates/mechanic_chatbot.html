@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Mechanic Chatbot - TravelSaathi{% endblock %}
+
+{% block content %}
+<!-- Mechanic Chatbot Hero Section -->
+<div class="container">
+    <div class="text-center my-5">
+        <h1 class="display-4">Mechanic Chatbot</h1>
+        <p class="lead">Get instant help for vehicle breakdowns and troubleshooting from our AI assistant</p>
+    </div>
+</div>
+
+<!-- Chatbot UI Section -->
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="fas fa-tools me-2"></i>Mechanic Chatbot</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chatbox" style="height:320px; overflow-y:auto; background:#f8f9fa; padding:1rem; border-radius:5px; margin-bottom:1rem; border:1px solid #e0e0e0;"></div>
+                    <form id="chat-form" autocomplete="off">
+                        <div class="input-group">
+                            <input type="text" id="user-input" class="form-control" placeholder="Describe your vehicle issue..." required>
+                            <button class="btn btn-primary" type="submit">Send</button>
+                        </div>
+                    </form>
+                    <div class="form-text mt-2">Try: "My car won't start", "I hear a clicking noise", "Engine overheating"</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+const chatbox = document.getElementById('chatbox');
+const form = document.getElementById('chat-form');
+const input = document.getElementById('user-input');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const userMsg = input.value.trim();
+    if (!userMsg) return;
+    chatbox.innerHTML += `<div class='mb-2'><b>You:</b> ${userMsg}</div>`;
+    // Placeholder bot response
+    setTimeout(() => {
+        chatbox.innerHTML += `<div class='mb-2'><b>Bot:</b> <span class='text-muted'>(This is a demo. AI response will go here.)</span></div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }, 500);
+    input.value = '';
+    chatbox.scrollTop = chatbox.scrollHeight;
+});
+</script>
+{% endblock %}
